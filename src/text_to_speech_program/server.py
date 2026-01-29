@@ -218,12 +218,6 @@ def main():
     
     #app.run(debug=True); # http://localhost:5000
     
-    if check_port_free(port, host = host) == False:
-        while check_port_free(port, host = host) == False:
-            port = port + 1
-        Config["port"] = port
-        config.save_config(Config)
-    
     app.run(host=host, port=port, debug=True)
     #app.run(host=host, port=port)
 
