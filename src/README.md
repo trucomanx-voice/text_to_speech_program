@@ -10,7 +10,7 @@ To install the package from [pypi](https://pypi.org/project/text-to-speech-progr
 
 
 ```bash
-pip install text_to_speech_program
+pip install --upgrade text-to-speech-program
 ```
 
 Execute `which tts-program-server` to see where it was installed, probably in `/home/USERNAME/.local/bin/tts-program-server`.

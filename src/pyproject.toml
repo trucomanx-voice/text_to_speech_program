@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "text_to_speech_program"
+version = "0.1.7"
+description = "A text-to-speech server and client using gtts and pydub"
+readme = "README.md"
+authors = [{name = "Fernando Pujaico Rivera", email = "fernando.pujaico.rivera@gmail.com"}]
+maintainers = [{name = "Fernando Pujaico Rivera", email = "fernando.pujaico.rivera@gmail.com"}]
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "GPL-3.0-only WITH Classpath-Exception-2.0 OR BSD-3-Clause"
+license-files = ["LICENSE"]
+keywords = ["tts", "server"]
+dependencies = [
+    "Flask",
+    "gtts",
+    "pydub",
+    "requests"
+]
+
+[project.urls]
+"Bug Reports" = "https://github.com/trucomanx/text_to_speech_program/issues"
+"Funding" = "https://trucomanx.github.io/en/funding.html"
+"Documentation" = "https://github.com/trucomanx/text_to_speech_program/tree/main/doc"
+"Source" = "https://github.com/trucomanx/text_to_speech_program"
+
+[project.scripts]
+"tts-program-server" = "text_to_speech_program.server:main"
+"tts-program-client" = "text_to_speech_program.client:main"
+
+[tool.setuptools.package-data]
+"text_to_speech_program" = ["icons/text_to_speech_program.png"]

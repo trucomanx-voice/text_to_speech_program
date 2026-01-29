@@ -1,3 +1,4 @@
 /src/dist
 /src/text_to_speech_program.egg-info
 /src/build
+/src/text_to_speech_program/__pycache__/

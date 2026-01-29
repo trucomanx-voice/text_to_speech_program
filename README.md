@@ -1,18 +1,16 @@
 # Text to Speech Program
 
-This package provides a text-to-speech server, using `gtts` and `playsound`, and a client program to interact with the server.
+This package provides a text-to-speech server, using `gtts` and `pydub`, and a client program to interact with the server.
 
-## Install from source
-Installing text-to-speech server
+## Install from pip
+To install the package from [pypi](https://pypi.org/project/text-to-speech-program), follow the instructions below:
+
 
 ```bash
-git clone https://github.com/trucomanx/text_to_speech_program.git
-cd text_to_speech_program
-pip install -r requirements.txt
-cd src
-python3 setup.py sdist
-pip install dist/text_to_speech_program-*.tar.gz
+pip install --upgrade text-to-speech-program
 ```
+
+Execute `which tts-program-server` to see where it was installed, probably in `/home/USERNAME/.local/bin/tts-program-server`. Then, execute `tts-program-server` to start the server.
 
 ## Install from pip and add to the Linux service
 Adding to Linux service
@@ -34,4 +32,5 @@ tts-program-client senddict '{
 ```
 
 ## More information
-More information can be found in [README.full.md](README.full.md)
+More information can be found in [doc/README.md](doc/README.md)
+

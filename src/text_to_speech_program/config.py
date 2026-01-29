@@ -40,3 +40,15 @@ def load_config():
     
     
     return config
+
+def save_config(config):
+    """Salva a configuração no arquivo JSON."""
+    
+    config_path, _ = get_config_path()
+    
+    # Cria o diretório de configuração se não existir
+    os.makedirs(os.path.dirname(config_path), exist_ok=True)
+    
+    # Salva o arquivo JSON com as configurações
+    with open(config_path, 'w') as file:
+        json.dump(config, file, indent=4)

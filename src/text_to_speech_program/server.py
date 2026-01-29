@@ -11,6 +11,7 @@ from langdetect import detect
 import json
 from . import work_audio
 from . import config
+import socket
 
 app = Flask(__name__)
 
@@ -150,6 +151,19 @@ play_processor_thread.start()
 
 ################################################################################
 
+def check_port_free(port, host = "127.0.0.1"):
+    try:
+        # Cria um socket
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # Tenta fazer o bind na porta
+        s.bind((host, port))
+        s.close()  # Se conseguir fazer o bind, a porta está livre
+        return True
+    except socket.error as e:
+        # Se não conseguir fazer o bind, significa que a porta está ocupada
+        return False
+
+
 help_string = '''
 Use: tts-program-server <command>
 
@@ -171,6 +185,11 @@ Commands:
         Returns this help.
     
 '''
+
+
+
+
+
 
 def main():
     Config = config.load_config();
@@ -198,6 +217,13 @@ def main():
         sys.exit(1)
     
     #app.run(debug=True); # http://localhost:5000
+    
+    if check_port_free(port, host = host) == False:
+        while check_port_free(port, host = host) == False:
+            port = port + 1
+        Config["port"] = port
+        config.save_config(Config)
+    
     app.run(host=host, port=port, debug=True)
     #app.run(host=host, port=port)
 
