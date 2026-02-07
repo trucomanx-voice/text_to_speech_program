@@ -4,6 +4,8 @@ import os
 import io
 from pydub import AudioSegment
 from pydub.playback import play
+import tempfile
+from gtts import gTTS
 
 def play_audio_file(audio_path, fator):
     if os.path.exists(audio_path):
@@ -26,8 +28,6 @@ def play_audio_file(audio_path, fator):
         # Reproduzir o áudio modificado diretamente do buffer
         play(AudioSegment.from_wav(audio_buffer))
 
-import tempfile
-from gtts import gTTS
 
 def text_to_audio_file(text,language):
     tts = gTTS(text=text, lang=language)
