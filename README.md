@@ -19,6 +19,13 @@ Adding to Linux service
 curl -fsSL https://raw.githubusercontent.com/trucomanx-voice/text_to_speech_program/main/install_linux_service.sh | sh
 ```
 
+## Start the server
+If the program server was not added to the Linux service, then to start the text-to-speech server, use the command below:
+
+```bash
+tts-program-server
+```
+
 ## Sending a DICT from string:
 Adding a text-to-speech task.
 
