@@ -16,7 +16,7 @@ If you want to create a tar.gz package from source and install:
 ```bash
 pip install --upgrade pkginfo twine packaging
 
-git clone https://github.com/trucomanx/text_to_speech_program.git
+git clone https://github.com/trucomanx-voice/text_to_speech_program.git
 cd text_to_speech_program/src
 python -m build
 pip install dist/text_to_speech_program-*.tar.gz
@@ -39,7 +39,7 @@ Execute `which tts-program-server` to see where it was installed, probably in `/
 ### 1.2.1. Install the package from pip and add to the Linux service
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/trucomanx/text_to_speech_program/main/install_linux_service.sh | sh
+curl -fsSL https://raw.githubusercontent.com/trucomanx-voice/text_to_speech_program/main/install_linux_service.sh | sh
 ```
 
 After the last code, the program server starts at with the operating system.

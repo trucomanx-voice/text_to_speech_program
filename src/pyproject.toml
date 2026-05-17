@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "text_to_speech_program"
-version = "0.1.8"
+version = "0.1.9"
 description = "A text-to-speech server and client using gtts and pydub"
 readme = "README.md"
 authors = [{name = "Fernando Pujaico Rivera", email = "fernando.pujaico.rivera@gmail.com"}]
@@ -25,10 +25,10 @@ dependencies = [
 ]
 
 [project.urls]
-"Bug Reports" = "https://github.com/trucomanx/text_to_speech_program/issues"
+"Bug Reports" = "https://github.com/trucomanx-voice/text_to_speech_program/issues"
 "Funding" = "https://trucomanx.github.io/en/funding.html"
-"Documentation" = "https://github.com/trucomanx/text_to_speech_program/tree/main/doc"
-"Source" = "https://github.com/trucomanx/text_to_speech_program"
+"Documentation" = "https://github.com/trucomanx-voice/text_to_speech_program/tree/main/doc"
+"Source" = "https://github.com/trucomanx-voice/text_to_speech_program"
 
 [project.scripts]
 "tts-program-server" = "text_to_speech_program.server:main"

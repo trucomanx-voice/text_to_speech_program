@@ -19,7 +19,7 @@ Execute `which tts-program-server` to see where it was installed, probably in `/
 ### 1.2. Install the package from pip and add to the Linux service
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/trucomanx/text_to_speech_program/main/install_linux_service.sh | sh
+curl -fsSL https://raw.githubusercontent.com/trucomanx-voice/text_to_speech_program/main/install_linux_service.sh | sh
 ```
 
 After the last code, the program server starts at with the operating system.
