@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "text_to_speech_program"
-version = "0.1.9"
+version = "0.1.10"
 description = "A text-to-speech server and client using gtts and pydub"
 readme = "README.md"
 authors = [{name = "Fernando Pujaico Rivera", email = "fernando.pujaico.rivera@gmail.com"}]
@@ -21,7 +21,8 @@ dependencies = [
     "Flask",
     "gtts",
     "pydub",
-    "requests"
+    "requests",
+    "langdetect"
 ]
 
 [project.urls]

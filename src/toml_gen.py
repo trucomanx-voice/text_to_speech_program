@@ -49,7 +49,8 @@ dependencies = [
     "Flask",
     "gtts",
     "pydub",
-    "requests"
+    "requests",
+    "langdetect"
 ]
 
 [project.urls]
