@@ -1,7 +1,5 @@
 #!/bin/bash
 
-pip install --upgrade text-to-speech-program
-
 # Defina as variáveis que você deseja substituir
 USER=$(whoami)  # Nome do usuário atual
 GROUP=$(id -gn) # Nome do grupo principal do usuário atual

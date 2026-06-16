@@ -16,6 +16,7 @@ Execute `which tts-program-server` to see where it was installed, probably in `/
 Adding to Linux service
 
 ```bash
+pip install --upgrade text-to-speech-program
 curl -fsSL https://raw.githubusercontent.com/trucomanx-voice/text_to_speech_program/main/install_linux_service.sh | sh
 ```
 
