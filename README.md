@@ -22,6 +22,9 @@ Execute `which tts-program-server` to see where it was installed, probably in `/
 pipx install text-to-speech-program
 ```
 
+> [!IMPORTANT]
+> To install with python 3.12 use: `pipx install --python /path/to/venvs/python3.12/bin/python3.12 text-to-speech-program`
+
 If you need to upgrade later: `pipx upgrade text-to-speech-program`
 
 ## Install from pip and add to the Linux service
