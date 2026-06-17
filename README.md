@@ -5,6 +5,7 @@ This package provides a text-to-speech server, using `gtts` and `pydub`, and a c
 ## Install from pip
 To install the package from [pypi](https://pypi.org/project/text-to-speech-program), follow the instructions below:
 
+### With pip
 
 ```bash
 pip install --upgrade text-to-speech-program
@@ -12,11 +13,19 @@ pip install --upgrade text-to-speech-program
 
 Execute `which tts-program-server` to see where it was installed, probably in `/home/USERNAME/.local/bin/tts-program-server`. Then, execute `tts-program-server` to start the server.
 
+### With pipx (recommended for desktop applications)
+
+```bash
+pipx install text-to-speech-program
+```
+
+If you need to upgrade later: `pipx upgrade text-to-speech-program`
+
 ## Install from pip and add to the Linux service
 Adding to Linux service
 
 ```bash
-pip install --upgrade text-to-speech-program
+pipx install text-to-speech-program
 curl -fsSL https://raw.githubusercontent.com/trucomanx-voice/text_to_speech_program/main/install_linux_service.sh | sh
 ```
 

@@ -4,10 +4,11 @@ This package provides a text-to-speech server, using `gtts` and `pydub`, and a c
 
 ## 1. Installing
 
-### 1.1. Install the package from pip
+### 1.1. Install the package from PyPi
 
 To install the package from [pypi](https://pypi.org/project/text-to-speech-program), follow the instructions below:
 
+#### With pip
 
 ```bash
 pip install --upgrade text-to-speech-program
@@ -15,6 +16,13 @@ pip install --upgrade text-to-speech-program
 
 Execute `which tts-program-server` to see where it was installed, probably in `/home/USERNAME/.local/bin/tts-program-server`.
 
+#### With pipx (recommended for desktop applications)
+
+```bash
+pipx install text-to-speech-program
+```
+
+If you need to upgrade later: `pipx upgrade text-to-speech-program`
 
 ### 1.2. Install the package from pip and add to the Linux service
 
