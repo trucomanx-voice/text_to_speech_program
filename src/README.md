@@ -2,6 +2,10 @@
 
 This package provides a text-to-speech server, using `gtts` and `pydub`, and a client program to interact with the server.
 
+<span style="color:red">
+Tested only on Python 3.10–3.12. Newer versions may break due to audio dependencies (pydub/audioop stack).
+</span>
+
 ## 1. Installing
 
 ### 1.1. Install the package from PyPi
