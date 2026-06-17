@@ -2,7 +2,7 @@
 
 This package provides a text-to-speech server, using `gtts` and `pydub`, and a client program to interact with the server.
 
-## Install from pip
+## Install from PyPi
 To install the package from [pypi](https://pypi.org/project/text-to-speech-program), follow the instructions below:
 
 ### With pip
