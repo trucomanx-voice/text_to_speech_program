@@ -37,7 +37,7 @@ description = "{__description__}"
 readme = "README.md"
 authors = [{{name = "{__author__}", email = "{__email__}"}}]
 maintainers = [{{name = "{__author__}", email = "{__email__}"}}]
-requires-python = ">=3.8"
+requires-python = ">=3.10,<3.13"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",

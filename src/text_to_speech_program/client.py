@@ -1,10 +1,12 @@
 #!/usr/bin/python3
+import argparse
 import requests
 import json
 import sys
 import os
 
 from . import config
+import text_to_speech_program.about as about
 
 def send_json_from_dict(server_url,data):
     # Enviar solicitação POST ao servidor
@@ -46,106 +48,88 @@ def remove_task(server_url,task_id):
         return None
 
 
-help_string = '''
-Use: tts-program-client <command> <arguments>
-
-Commands without argument:
-    port
-    
-        Returns the port of server.
-    
-    host
-    
-        Returns the host of server.
-
-    config
-        
-        Returns the config file path.
-        
-    help
-    
-        Returns this help.
-
-Commands with argument:
-    
-    send <path_of_json_file>
-        
-        Sent to server the information of json file <path_of_json_file>.
-    
-    senddict \"{dict_python_code}\"
-        
-        Sent to server the information of dict \"{dict_python_code}\".
-    
-    remove <ID>
-    
-        Removes of server the task with the indentifier <ID>.
-
-examples
-    
-    tts-program-client host
-    tts-program-client port
-    tts-program-client config
-    tts-program-client senddict '{\"text\":\"Hi! How are you?\",\"language\": \"en\",\"split_pattern\": [\"\\n\\n\"],\"speed\":1.25}'
-    tts-program-client remove 'd9b17a60-4370-4d13-86a8-f258a37fdbf6'
-'''
-
 
 def main():
-    Config = config.load_config();
-    host = Config['host'];
-    port = Config['port'];
-    
-    # URL do servidor
-    SERVER_URL = 'http://'+host+':'+str(port);
 
-    # Verificar o comando recebido
-    if len(sys.argv) < 2:
-        print(help_string);
+    Config = config.load_config()
+    
+    prog_client_name = about.__program_client__
+
+    parser = argparse.ArgumentParser(
+        prog=prog_client_name,
+        description="Client CLI for sending tasks to the TTS server",
+        formatter_class=argparse.RawTextHelpFormatter,
+        epilog=f"""
+    Examples:
+      {prog_client_name} host
+      {prog_client_name} port
+      {prog_client_name} config
+
+      {prog_client_name} send file.json
+
+      {prog_client_name} senddict '{{"text": "Hi","language":"en", "split_pattern": ["."],"speed":1.25 }}'
+
+      {prog_client_name} remove d9b17a60-4370-4d13-86a8-f258a37fdbf6
+    """
+    )
+
+    parser.add_argument("--host", help="Override server host")
+    parser.add_argument("--port", type=int, help="Override server port")
+
+    sub = parser.add_subparsers(dest="command")
+
+    sub.add_parser("host", help="Show server host")
+    sub.add_parser("port", help="Show server port")
+    sub.add_parser("config", help="Show config file path")
+
+    send = sub.add_parser("send", help="Send JSON file to server")
+    send.add_argument("filepath")
+
+    senddict = sub.add_parser("senddict", help="Send JSON string to server")
+    senddict.add_argument("data")
+
+    remove = sub.add_parser("remove", help="Remove task by ID")
+    remove.add_argument("task_id")
+
+    args = parser.parse_args()
+    
+    host = args.host if args.host else Config["host"]
+    port = args.port if args.port else Config["port"]
+    
+    if port <= 0 or port > 65535:
+        print("Invalid port number")
         sys.exit(1)
 
-    command = sys.argv[1]
+    SERVER_URL = f"http://{host}:{port}"
 
-    if command == "send":
-        if len(sys.argv) != 3:
-            print("Use: tts-program-client send <path_arquive_json>")
+    if args.command is None:
+        parser.print_help()
+        sys.exit(2)
+
+    if args.command == "send":
+        send_json_from_file(SERVER_URL, args.filepath)
+
+    elif args.command == "senddict":
+        try:
+            data_dict = json.loads(args.data)
+        except json.JSONDecodeError:
+            print("Invalid JSON string.")
             sys.exit(1)
 
-        filepath = sys.argv[2]
-        send_json_from_file(SERVER_URL,filepath)
+        send_json_from_dict(SERVER_URL, data_dict)
 
-    elif command == "senddict":
-        if len(sys.argv) != 3:
-            print("Use: tts-program-client senddict \"{dict_code}\"")
-            sys.exit(1)
-        
-        data_dict = json.loads(sys.argv[2])
-        send_json_from_dict(SERVER_URL,data_dict)
+    elif args.command == "remove":
+        remove_task(SERVER_URL, args.task_id)
 
-    elif command == "remove":
-        if len(sys.argv) != 3:
-            print("Use: tts-program-client remove <ID>");
-            sys.exit(1);
+    elif args.command == "host":
+        print(host)
 
-        task_id = sys.argv[2];
-        remove_task(SERVER_URL,task_id);
+    elif args.command == "port":
+        print(port)
 
-    elif command == "host":
-        print(host);
-        sys.exit(1);
-        
-    elif command == "port":
-        print(port);
-        sys.exit(1);
-
-    elif command == "config":
-        config_path, _ = config.get_config_path();
-        print(config_path);
-        
-    elif command == "help":
-        print(help_string);
-        
-    else:
-        print(help_string);
+    elif args.command == "config":
+        config_path, _ = config.get_config_path()
+        print(config_path)
 
 # Iniciar o servidor Flask
 if __name__ == "__main__":

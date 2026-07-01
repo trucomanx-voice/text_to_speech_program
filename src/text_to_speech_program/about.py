@@ -1,6 +1,6 @@
 # about.py
 
-__version__ = "0.1.10"
+__version__ = "0.1.11"
 __package__ = "text_to_speech_program"
 __program_server__ = "tts-program-server"
 __program_client__ = "tts-program-client"
